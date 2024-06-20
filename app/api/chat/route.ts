@@ -5,11 +5,10 @@ import { OpenAIStream, StreamingTextResponse } from "ai";
 const openai = new OpenAI();
 const model = process.env.OPENAI_MODEL || "gpt-4o";
 
-export const maxDuration = 30;
-
 type GenerateJokeParams = {
   type: string;
   topic: string;
+  temperature: number;
 };
 
 function jokePrompt({ type, topic }: GenerateJokeParams) {
@@ -33,6 +32,7 @@ function generateJokeResponse(params: GenerateJokeParams) {
     model,
     messages,
     stream: true,
+    temperature: params.temperature,
   });
 }
 
@@ -41,6 +41,7 @@ export async function POST(req: Request) {
   const jokeParams = {
     type: data.type ?? "oneliner",
     topic: data.topic ?? "programming",
+    temperature: Number(data.temperature ?? 1.0),
   };
   const response = await generateJokeResponse(jokeParams);
   const stream = OpenAIStream(response);

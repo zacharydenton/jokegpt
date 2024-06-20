@@ -51,6 +51,17 @@ export default function Home() {
             <option>sports</option>
           </select>
         </div>
+        <div>
+          <label htmlFor="temperature">Temperature:</label>
+          <input
+            id="temperature"
+            name="temperature"
+            type="range"
+            min="0"
+            max="2"
+            step="0.1"
+          />
+        </div>
         <button type="submit">Generate</button>
       </form>
     </main>
