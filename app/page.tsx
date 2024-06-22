@@ -47,6 +47,12 @@ export default function Home() {
   const jokes = messages.filter((m) => m.role !== "system");
   const joke = jokes[jokes.length - 1];
 
+  const submitButton = isLoading ? (
+    <button disabled>Generating...</button>
+  ) : (
+    <button type="submit">Generate</button>
+  );
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-centter p-24">
       {joke && <p className="mb-4">{joke.content}</p>}
@@ -74,7 +80,7 @@ export default function Home() {
             step="0.1"
           />
         </div>
-        <button type="submit">Generate</button>
+        {submitButton}
       </form>
     </main>
   );
