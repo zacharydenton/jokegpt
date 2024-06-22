@@ -3,6 +3,31 @@
 import * as React from "react";
 import { useChat } from "@ai-sdk/react";
 
+const JOKE_CATEGORIES = [
+  "One Liners",
+  "Animal",
+  "At Work",
+  "Bar",
+  "Blond",
+  "Children",
+  "College",
+  "Gross",
+  "Insults",
+  "Knock-Knock",
+  "Lawyer",
+  "Lightbulb",
+  "Medical",
+  "Men / Women",
+  "News / Politics",
+  "Other / Misc",
+  "Puns",
+  "Redneck",
+  "Religious",
+  "Sports",
+  "Tech",
+  "Yo Momma",
+];
+
 export default function Home() {
   const { messages, input, append, isLoading } = useChat();
 
@@ -27,29 +52,16 @@ export default function Home() {
       {joke && <p className="mb-4">{joke.content}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="type">Joke type:</label>
-          <select id="type" name="type">
-            <option>oneliner</option>
-            <option>self-deprecating</option>
-            <option>ironic</option>
-            <option>situational</option>
-            <option>observational</option>
-            <option>anecdotal</option>
-            <option>character</option>
-            <option>deadpan</option>
-            <option>farcical</option>
-            <option>slapstick</option>
+          <label htmlFor="category">Joke category:</label>
+          <select id="category" name="category">
+            {JOKE_CATEGORIES.map((category) => (
+              <option key={category}>{category}</option>
+            ))}
           </select>
         </div>
         <div>
           <label htmlFor="topic">Joke topic:</label>
-          <select id="topic" name="topic">
-            <option>programming</option>
-            <option>AI</option>
-            <option>llamas</option>
-            <option>cheese</option>
-            <option>sports</option>
-          </select>
+          <input id="topic" name="topic" defaultValue="dogs" />
         </div>
         <div>
           <label htmlFor="temperature">Temperature:</label>
