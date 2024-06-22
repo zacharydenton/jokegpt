@@ -14,19 +14,22 @@ type GenerateJokeParams = {
   temperature: number;
 };
 
-function randomJokes(category: string, count: number) {
+function randomJokes(category: string, maxChars: number) {
+  let charCount = 0;
   const result = [];
   const jokes = JOKES[category] ?? JOKES["One Liners"];
   let offset = Math.floor(Math.random() * jokes.length);
-  for (let i = 0; i < count; i++) {
-    result.push(jokes[offset].body);
+  while (charCount < maxChars) {
+    const { body } = jokes[offset];
+    result.push(body);
+    charCount += body.length;
     offset = (offset + 1) % jokes.length;
   }
   return result;
 }
 
 function jokePrompt({ category, topic }: GenerateJokeParams) {
-  const exampleJokes = randomJokes(category, 10);
+  const exampleJokes = randomJokes(category, 2000);
   return `
 CONTEXT:
 ${exampleJokes.join("\n\n")}
