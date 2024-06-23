@@ -3,7 +3,12 @@ import type { ChatCompletionMessageParam } from "openai/resources/chat/completio
 import { OpenAIStream, StreamingTextResponse } from "ai";
 
 import WOCKA from "./wocka.json";
-const JOKES = Object.groupBy(WOCKA, (joke) => joke.category);
+const JOKES = WOCKA.reduce((group, joke) => {
+  const { category } = joke;
+  group[category] = group[category] ?? [];
+  group[category].push(joke);
+  return group;
+}, {});
 
 const openai = new OpenAI();
 const model = process.env.OPENAI_MODEL || "gpt-4o";
