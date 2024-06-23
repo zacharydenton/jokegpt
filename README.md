@@ -1,3 +1,7 @@
+<p align="center">
+<img alt="jokegpt demo" src="https://github.com/zacharydenton/jokegpt/assets/310773/a397686a-9d78-413d-b9a4-0300cd79b1c2">
+</p>
+
 ## Getting Started
 
 First, run the development server:
