@@ -105,6 +105,7 @@ export default function Home() {
               id="topic"
               name="topic"
               placeholder="Joke topic (e.g. dogs)"
+              maxLength="200"
               className="block p-2 w-full z-20 text-sm text-slate-900 bg-slate-50 rounded-e-lg border-s-slate-50 border-s-2 border border-l-0 border-slate-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-700 dark:border-s-slate-700  dark:border-slate-600 dark:placeholder-slate-400 dark:text-white dark:focus:border-blue-500"
             />
             <button

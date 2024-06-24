@@ -64,7 +64,7 @@ export async function POST(req: Request) {
   const data = (await req.json())?.data ?? {};
   const jokeParams = {
     category: data.category ?? "One Liners",
-    topic: data.topic ?? "programming",
+    topic: (data.topic ?? "programming").slice(0, 200),
     temperature: Number(data.temperature ?? 1.0),
   };
   const response = await generateJokeResponse(jokeParams);
